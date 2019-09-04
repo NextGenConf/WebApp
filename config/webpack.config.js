@@ -28,5 +28,8 @@ module.exports = (env, argv) => {
                 template: "public/index.html",
             }),
         ],
+        devServer: {
+            port: 3000,
+        },
     };
 }
