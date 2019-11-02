@@ -1,26 +1,28 @@
 # NextGen Conf Dashboard
 
-This repo is the front-end web UI for the NextGen Conf project
+This repo is the front-end web UI for the NextGen Conf project.
 
 ## Developing
 
 Requirements:
 
-- Node.js (at least 10.16.3)
+- [Node.js](https://nodejs.org/) (at least 12.13.0)
 
-To install dependencies, run the follow command:
+To install dependencies:
 
 ```sh
 npm install
 ```
 
-To run locally, run the following command:
+To run locally:
 
 ```sh
 $ npm start
 ```
 
-To create a production build, run the follow command:
+The dashboard should be running at [http://localhost:3000](http://localhost:3000) 
+
+To create a production build:
 
 ```sh
 $ npm run build
