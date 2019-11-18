@@ -1,5 +1,5 @@
 {
-  "name": "NextGenConf/WebApp",
+  "name": "@ngc/web-app",
   "version": "0.0.1",
   "description": "Next Gen Conference Web App",
   "scripts": {
