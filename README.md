@@ -1,6 +1,6 @@
 # NextGenConf Web App
 
-This repo is the front-end web UI for the NextGen Conf project.
+This repo is the front-end web app for the NextGen Conf project.
 
 ## Developing
 
