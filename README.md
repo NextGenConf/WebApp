@@ -1,4 +1,4 @@
-# NextGen Conf Dashboard
+# NextGenConf Web App
 
 This repo is the front-end web UI for the NextGen Conf project.
 
@@ -20,7 +20,7 @@ To run locally:
 $ npm start
 ```
 
-The dashboard should be running at [http://localhost:3000](http://localhost:3000) 
+The app should be running at [http://localhost:3000](http://localhost:3000) 
 
 To create a production build:
 
