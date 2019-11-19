@@ -8,8 +8,8 @@ export interface ConferenceListProps {
 
 export const ConferenceList: React.FunctionComponent<ConferenceListProps> = ({ conferences }: ConferenceListProps) => {
     var conferenceList = conferences.map(function (entry: Conference) {
-        return <ConferenceDetails key={entry.id} name={entry.name} start={entry.start} end={entry.end} />;
+        return <ConferenceDetails key={entry.id} name={entry.name} startDate={entry.startDate} endDate={entry.endDate} venue={entry.venue} />;
     });
 
-    return <ul>{conferenceList}</ul>;
+    return <div>{conferenceList}</div>;
 };

@@ -1,14 +1,17 @@
 import * as React from 'react';
+import { Venue } from '../model/Venue';
 
 interface ConferenceDetailsProps {
     name: string;
-    start: Date;
-    end: Date;
+    startDate: Date;
+    endDate: Date;
+    venue: Venue;
 }
 
-export const ConferenceDetails: React.FunctionComponent<ConferenceDetailsProps> = ({ name, start, end }: ConferenceDetailsProps) =>
-    <li>
+export const ConferenceDetails: React.FunctionComponent<ConferenceDetailsProps> = ({ name, startDate, endDate, venue }) =>
+    <div>
         <div>Name: {name}</div>
-        <div>Starts on: {start.toDateString()}</div>
-        <div>Ends on: {end.toDateString()}</div>
-    </li>;
+        <div>Starts on: {startDate.toDateString()}</div>
+        <div>Ends on: {endDate.toDateString()}</div>
+        <div>Venue: {venue.name} - {venue.address.addressLine}, {venue.address.city}, {venue.address.country}, {venue.address.postalCode}</div>
+    </div>;
