@@ -1,9 +1,12 @@
 import { Venue } from "./Venue";
 
 export interface Conference {
-    id: string;
-    name: string;
-    startDate: Date;
-    endDate: Date;
-    venue: Venue;
+    uniqueName: string
+    displayName: string
+    iconUri: string
+    description: string
+    subtitle: string
+    startDate: string
+    endDate: string
+    venue: Venue
 };
