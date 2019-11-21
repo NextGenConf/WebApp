@@ -9,9 +9,6 @@ const getConferencesQuery = gql`
     getConferences {
       uniqueName
       displayName
-      iconUri
-      description
-      subtitle
       startDate
       endDate
       venue {
