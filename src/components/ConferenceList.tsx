@@ -1,37 +1,25 @@
 import * as React from "react";
+import { List, Image } from "@stardust-ui/react";
 import { Conference } from "../model/Conference";
-import { ConferenceDetails } from "./ConferenceDetails";
-import { useQuery } from "@apollo/react-hooks";
-import { gql } from "apollo-boost";
 
-const getConferencesQuery = gql`
-  {
-    getConferences {
-      uniqueName
-      displayName
-      startDate
-      endDate
-      venue {
-        name
-        address {
-          addressLine
-          city
-          country
-          postalCode
+interface ConferenceListProps {
+    conferences: Conference[]
+}
+
+export const ConferenceList: React.FunctionComponent<ConferenceListProps> = ({ conferences }: ConferenceListProps) => {
+    const conferenceItems = conferences.map((entry) => {
+        return {
+            key: entry.uniqueName,
+            header: entry.displayName,
+            media: <Image src={entry.iconUri} height={100} width={100} />,
+            headerMedia: entry.startDate + "-" + entry.endDate,
+            content: entry.subtitle,
+            onClick: () => {
+                // TODO: Use react router for navigation.
+                window.location.href = window.location.origin + '/' + entry.uniqueName; 
+            }
         }
-      }
-    }
-  }
-`;
-
-export const ConferenceList: React.FunctionComponent = () => {
-    const { loading, error, data } = useQuery(getConferencesQuery);
-    if (loading) return <p>Loading...</p>; //TODO: Better loading behaviour.
-    if (error) return <p>Error :(</p>; //TODO: Better error handling.
-
-    var conferenceList = data.getConferences.map(function (entry: Conference) {
-        return <ConferenceDetails key={entry.uniqueName} name={entry.displayName} startDate={entry.startDate} endDate={entry.endDate} venue={entry.venue} />;
     });
 
-    return <div>{conferenceList}</div>;
+    return <List selectable items={conferenceItems} />
 };
