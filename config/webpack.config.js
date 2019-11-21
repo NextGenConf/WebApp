@@ -10,6 +10,7 @@ module.exports = (env, argv) => {
         output: {
             path: paths.dist,
             filename: "bundle.js",
+            publicPath: '/'
         },
         resolve: {
             extensions: [".ts", ".tsx", ".js"],
@@ -30,6 +31,7 @@ module.exports = (env, argv) => {
         ],
         devServer: {
             port: 3000,
+            historyApiFallback: true
         },
     };
 }
