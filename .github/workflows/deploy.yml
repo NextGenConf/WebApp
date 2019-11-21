@@ -8,17 +8,18 @@ jobs:
 
   build:
     env:
-      DOCKER_REGISTRY: nextgenconference.azurecr.io
-      CI_CLIENT_ID: 9ee91ad0-7ca4-42f7-9113-01aacef52381
+      DOCKER_REGISTRY: nextgenconf.azurecr.io
+      CI_CLIENT_ID: 35d182f8-3c82-4bf7-8531-b8f892cc60fa
 
     runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v1
+    - name: Write image name to image_name.txt
+      run: echo ${GITHUB_REPOSITORY} | tr '[:upper:]' '[:lower:]' > image_name.txt
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag ${DOCKER_REGISTRY}/${GITHUB_REPOSITORY}:${GITHUB_SHA}
+      run: docker build . --file Dockerfile --tag ${DOCKER_REGISTRY}/$(cat image_name.txt):${GITHUB_SHA}
     - name: Docker Login
       run: echo ${{ secrets.CI_CLIENT_SECRET }} | docker login ${DOCKER_REGISTRY} --username ${CI_CLIENT_ID} --password-stdin
     - name: Push the Docker image
-      run: docker push ${DOCKER_REGISTRY}/${GITHUB_REPOSITORY}:${GITHUB_SHA}
-      
+      run: docker push ${DOCKER_REGISTRY}/$(cat image_name.txt):${GITHUB_SHA}
