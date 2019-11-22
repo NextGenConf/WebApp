@@ -1,9 +1,9 @@
 import * as React from "react";
-import { useParams } from 'react-router-dom';
+import { useParams } from "react-router-dom";
 import { useQuery } from "@apollo/react-hooks";
 import { gql } from "apollo-boost";
 import { SessionList } from "../components/SessionList";
-import { Header, Flex } from "@stardust-ui/react";
+import { Header, Flex, Image } from "@stardust-ui/react";
 
 // TODO: For now we just get all sessions, as we don't have the required mapping service.
 const getConferenceSessionsQuery = gql`
@@ -11,9 +11,9 @@ const getConferenceSessionsQuery = gql`
     getConference(uniqueName: $conferenceName) {
       displayName
       description
+      iconUri
     }
-    getAllSessions
-    {
+    getAllSessions {
       uniqueName
       title
       description
@@ -26,27 +26,58 @@ const getConferenceSessionsQuery = gql`
 `;
 
 export const ConferencePage: React.FunctionComponent = () => {
-    const { conferenceName } = useParams();
-    if (!conferenceName) {
-        // TODO: Better error handling.
-        return <p>Missing useParams</p>;
-    }
+  const { conferenceName } = useParams();
+  if (!conferenceName) {
+    // TODO: Better error handling.
+    return <p>Missing useParams</p>;
+  }
 
-    const { loading, error, data } = useQuery(getConferenceSessionsQuery, { variables: { conferenceName } });
-    if (loading) {
-        // TODO: Better loading UI.
-        return <p>Loading...</p>;
-    }
+  const { loading, error, data } = useQuery(getConferenceSessionsQuery, {
+    variables: { conferenceName }
+  });
+  if (loading) {
+    // TODO: Better loading UI.
+    return <p>Loading...</p>;
+  }
 
-    if (error) {
-      console.log(error);
-        // TODO: Better error handling.
-        return <p>Error :(</p>;
-    }
+  if (error) {
+    console.log(error);
+    // TODO: Better error handling.
+    return <p>Error :(</p>;
+  }
 
-    return <Flex gap="gap.small" column>
-        <Header content={data.getConference.displayName} description={{content: data.getConference.description, as: 'span'}} />
+  return (
+    <div
+      style={{
+        display: "grid",
+        gridTemplateColumns: "auto auto",
+        gridTemplateRows: "auto auto",
+        gridTemplateAreas: `
+        'icon description description'
+        'sessions sessions sessions'
+        `
+      }}
+    >
+      <Image
+        src={data.getConference.iconUri}
+        height={250}
+        width={250}
+        styles={{ padding: "20px", gridArea: "icon" }}
+      />
+
+      <Flex gap="gap.small" column styles={{ gridArea: "description", paddingTop: "20px", paddingRight: "50px" }}>
+        <Header
+          content={data.getConference.displayName}
+          description={{ content: data.getConference.description, as: "span" }}
+        />
         <Header content="Sessions:" as="h3" />
-        <SessionList conferenceName={conferenceName} sessions={data.getAllSessions} />
-    </Flex>;
+        <div style={{ gridArea: "sessions" }}>
+          <SessionList
+            conferenceName={conferenceName}
+            sessions={data.getAllSessions}
+          />
+        </div>
+      </Flex>
+    </div>
+  );
 };
