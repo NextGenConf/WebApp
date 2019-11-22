@@ -28,12 +28,12 @@ const getConferencesQuery = gql`
 export const FeedPage: React.FunctionComponent = () => {
     const { loading, error, data } = useQuery(getConferencesQuery);
     if (loading) {
-        //TODO: Better loading UI.
+        // TODO: Better loading UI.
         return <p>Loading...</p>;
     }
 
     if (error) {
-        //TODO: Better error handling.
+        // TODO: Better error handling.
         return <p>Error :(</p>;
     }
 
