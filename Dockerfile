@@ -9,8 +9,8 @@ RUN npm run build
 
 FROM nginx:1.17.5-alpine
 
-COPY --from=build-environment /app/dist /var/www
+COPY --from=build-environment /app/dist /usr/share/nginx/html
 
-COPY config/nginx.conf /etc/nginx/nginx.conf
+COPY config/nginx.conf /etc/nginx/conf.d/default.conf
 
 EXPOSE 80
