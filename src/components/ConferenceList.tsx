@@ -1,5 +1,6 @@
 import * as React from "react";
 import { List, Image } from "@stardust-ui/react";
+import { useHistory } from 'react-router-dom';
 import { Conference } from "../model/Conference";
 
 interface ConferenceListProps {
@@ -7,6 +8,7 @@ interface ConferenceListProps {
 }
 
 export const ConferenceList: React.FunctionComponent<ConferenceListProps> = ({ conferences }: ConferenceListProps) => {
+    const history = useHistory();
     const conferenceItems = conferences.map((entry) => {
         return {
             key: entry.uniqueName,
@@ -15,8 +17,7 @@ export const ConferenceList: React.FunctionComponent<ConferenceListProps> = ({ c
             headerMedia: entry.startDate + "-" + entry.endDate,
             content: entry.subtitle,
             onClick: () => {
-                // TODO: Use react router for navigation.
-                window.location.href = window.location.origin + '/' + entry.uniqueName; 
+                history.push('/api/conference/' + entry.uniqueName);
             }
         }
     });
