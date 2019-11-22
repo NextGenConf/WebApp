@@ -17,7 +17,7 @@ export const ConferenceList: React.FunctionComponent<ConferenceListProps> = ({ c
             headerMedia: entry.startDate + "-" + entry.endDate,
             content: entry.subtitle,
             onClick: () => {
-                history.push('/api/conference/' + entry.uniqueName);
+                history.push('/conference/' + entry.uniqueName);
             }
         }
     });

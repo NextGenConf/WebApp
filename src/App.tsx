@@ -7,7 +7,7 @@ import { ConferencePage } from "./pages/ConferencePage";
 import { SessionPage } from "./pages/SessionPage";
 
 const client = new ApolloClient({
-    link: new HttpLink({ uri: 'http://localhost:4000/' }),
+    link: new HttpLink({ uri: 'https://ngc.northeurope.cloudapp.azure.com/graphql' }),
     cache: new InMemoryCache()
 });
 
@@ -16,8 +16,8 @@ export default class App extends React.Component {
         return (
             <ApolloProvider client={client}>
                 <Switch>
-                    <Route path="/api/conference/:conferenceName/session/:sessionName" component={SessionPage} />
-                    <Route path="/api/conference/:conferenceName" component={ConferencePage} />
+                    <Route path="/conference/:conferenceName/session/:sessionName" component={SessionPage} />
+                    <Route path="/conference/:conferenceName" component={ConferencePage} />
                     <Route exact path="/" component={FeedPage} />
                 </Switch>
             </ApolloProvider>

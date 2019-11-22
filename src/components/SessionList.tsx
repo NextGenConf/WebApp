@@ -16,7 +16,7 @@ export const SessionList: React.FunctionComponent<SessionListProps> = ({ confere
             header: entry.title,
             content: entry.subtitle,
             onClick: () => {
-                history.push('/api/conference/' + conferenceName + "/session/" + entry.uniqueName);
+                history.push('/conference/' + conferenceName + "/session/" + entry.uniqueName);
             }
         }
     });

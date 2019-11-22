@@ -39,6 +39,7 @@ export const ConferencePage: React.FunctionComponent = () => {
     }
 
     if (error) {
+      console.log(error);
         // TODO: Better error handling.
         return <p>Error :(</p>;
     }
