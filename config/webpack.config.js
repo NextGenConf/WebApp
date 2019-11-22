@@ -10,7 +10,7 @@ module.exports = (env, argv) => {
         output: {
             path: paths.dist,
             filename: "bundle.js",
-            publicPath: developerMode ? "/": undefined
+            publicPath: "/"
         },
         resolve: {
             extensions: [".ts", ".tsx", ".js"],
