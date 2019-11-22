@@ -25,7 +25,7 @@ const getConferencesQuery = gql`
   }
 `;
 
-export const ConferencesPage: React.FunctionComponent = () => {
+export const FeedPage: React.FunctionComponent = () => {
     const { loading, error, data } = useQuery(getConferencesQuery);
     if (loading) {
         //TODO: Better loading UI.
