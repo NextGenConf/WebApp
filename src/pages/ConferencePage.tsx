@@ -57,8 +57,6 @@ export const ConferencePage: React.FunctionComponent = () => {
         return <p>Error :(</p>;
     }
 
-    console.log(data);
-
     // TODO: We don't need a ConferenceList here, but since it's already styled I'm using it as a placeholder.
     return <div>
         <ConferenceList conferences={[data.getConference]} />
