@@ -1,30 +1,25 @@
 import * as React from "react";
+import { List } from "@stardust-ui/react";
+import { useHistory } from 'react-router-dom';
 import { Session } from "../model/Session";
-import { SessionDetails } from "./SessionDetails";
-import { useQuery } from "@apollo/react-hooks";
-import { gql } from "apollo-boost";
 
-const getAllSessionsQuery = gql`
-  {
-    getAllSessions
-    {
-      uniqueName
-      title
-      description
-      presenterId
-      location
-    }
-  }
-`;
+interface SessionListProps {
+    conferenceName: string,
+    sessions: Session[]
+}
 
-export const SessionList: React.FunctionComponent = () => {
-    const { loading, error, data } = useQuery(getAllSessionsQuery);
-    if (loading) return <p>Loading...</p>; //TODO: Better loading behaviour.
-    if (error) return <p>Error :(</p>; //TODO: Better error handling.
-
-    var sessionList = data.getAllSessions.map(function (entry: Session) {
-        return <SessionDetails key={entry.uniqueName} name={entry.title} description={entry.description} presenterId={entry.presenterId} location={entry.location} />;
+export const SessionList: React.FunctionComponent<SessionListProps> = ({ conferenceName, sessions }: SessionListProps) => {
+    const history = useHistory();
+    const sessionItems = sessions.map((entry) => {
+        return {
+            key: entry.uniqueName,
+            header: entry.title,
+            content: entry.subtitle,
+            onClick: () => {
+                history.push('/api/conference/' + conferenceName + "/session/" + entry.uniqueName);
+            }
+        }
     });
 
-    return <div>{sessionList}</div>;
+    return <List selectable items={sessionItems} />
 };
