@@ -20,22 +20,22 @@
   "devDependencies": {
     "html-webpack-plugin": "^3.2.0",
     "ts-loader": "^6.2.1",
-    "typescript": "^3.6.4",
-    "webpack": "^4.41.2",
-    "webpack-cli": "^3.3.10",
-    "webpack-dev-server": "^3.9.0",
-    "@types/react": "^16.9.11",
-    "@types/react-dom": "^16.9.3"
+    "typescript": "^3.7.5",
+    "webpack": "^4.41.6",
+    "webpack-cli": "^3.3.11",
+    "webpack-dev-server": "^3.10.3",
+    "@types/react": "^16.9.19",
+    "@types/react-dom": "^16.9.5"
   },
   "dependencies": {
     "@apollo/react-hooks": "^3.1.3",
     "@stardust-ui/docs-components": "^0.40.0",
-    "@stardust-ui/react": "^0.40.3",
-    "@types/react-router-dom": "^5.1.2",
-    "apollo-boost": "^0.4.4",
-    "graphql": "^14.5.8",
-    "react": "^16.11.0",
-    "react-dom": "^16.11.0",
+    "@stardust-ui/react": "^0.40.4",
+    "@types/react-router-dom": "^5.1.3",
+    "apollo-boost": "^0.4.7",
+    "graphql": "^14.6.0",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
     "react-router-dom": "^5.1.2"
   }
 }
